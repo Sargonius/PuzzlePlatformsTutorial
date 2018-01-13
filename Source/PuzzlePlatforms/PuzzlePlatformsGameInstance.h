@@ -35,6 +35,7 @@ private:
 	UPROPERTY()
 	TSubclassOf<class UUserWidget> MenuClass;
 
+	class UMainMenu* Menu = nullptr;
 	
 	
 	
