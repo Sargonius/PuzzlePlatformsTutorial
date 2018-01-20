@@ -5,14 +5,22 @@
 #include "UObject/ConstructorHelpers.h"
 #include "PlatformTrigger.h"
 #include "Blueprint/UserWidget.h"
+
+#include "MenuSystem/MenuWidget.h"
+
 #include "MenuSystem/MainMenu.h"
 
 UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitializer& ObjectInitializer)
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> MenuBPClass(TEXT("/Game/MenuSystem/BPW_MainMenu"));
 	if (!ensure(MenuBPClass.Class != nullptr)) return;
+
 	MenuClass = MenuBPClass.Class;
-	UE_LOG(LogTemp, Warning, TEXT("Found MenuClass: %s"), *MenuClass->GetName());
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> EscapeMenuBPClass(TEXT("/Game/MenuSystem/BPW_EscapeMenu"));
+	if (!ensure(EscapeMenuBPClass.Class != nullptr)) return;
+
+	EscapeMenuClass = EscapeMenuBPClass.Class;
 }
 
 void UPuzzlePlatformsGameInstance::Init()
@@ -26,6 +34,16 @@ void UPuzzlePlatformsGameInstance::LoadMenu()
 	if (!ensure(Menu != nullptr)) return;
 
 	Menu->Setup();
+
+	Menu->SetMenuInterface(this);
+}
+
+void UPuzzlePlatformsGameInstance::InGameLoadMenu()
+{
+	UMenuWidget* EscapeMenu = CreateWidget<UMenuWidget>(this, EscapeMenuClass);
+	if (!ensure(Menu != nullptr)) return;
+
+	EscapeMenu->Setup();
 
 	Menu->SetMenuInterface(this);
 

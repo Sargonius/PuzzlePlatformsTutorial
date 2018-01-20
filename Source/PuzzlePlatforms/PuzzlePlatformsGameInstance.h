@@ -24,6 +24,9 @@ public:
 	UFUNCTION(Exec, BlueprintCallable)
 	void LoadMenu();
 
+	UFUNCTION(Exec, BlueprintCallable)
+	void InGameLoadMenu();
+
 	UFUNCTION(Exec)
 	void Host();
 
@@ -35,7 +38,13 @@ private:
 	UPROPERTY()
 	TSubclassOf<class UUserWidget> MenuClass;
 
+	UPROPERTY()
+	TSubclassOf<class UUserWidget> EscapeMenuClass;
+
+
 	class UMainMenu* Menu = nullptr;
+
+	class UReturnToMenu* EscapeMenu = nullptr;
 	
 	
 	
