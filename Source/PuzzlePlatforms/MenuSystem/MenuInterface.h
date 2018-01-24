@@ -1,5 +1,4 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -25,6 +24,8 @@ public:
 	virtual void Host() = 0;
 
 	virtual void Join(const FString& IPAdress) = 0;
+
+	virtual void LoadMainMenu() = 0;
 	
 	
 };

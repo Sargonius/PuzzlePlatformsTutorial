@@ -14,8 +14,6 @@ class PUZZLEPLATFORMS_API UReturnToMenu : public UMenuWidget
 {
 	GENERATED_BODY()
 
-	void LoadMenu();
-
 	UPROPERTY(meta = (BindWidget))
 	class UButton* ReturnToMenuButton;
 
@@ -24,6 +22,14 @@ class PUZZLEPLATFORMS_API UReturnToMenu : public UMenuWidget
 
 protected:
 	virtual bool Initialize();
+
+private:
+
+	UFUNCTION()
+	void CancelPressed();
+
+	UFUNCTION()
+	void LoadMenuPressed();
 	
 	
 	

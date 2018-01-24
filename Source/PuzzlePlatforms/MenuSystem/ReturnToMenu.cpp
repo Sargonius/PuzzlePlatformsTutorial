@@ -11,17 +11,26 @@ bool UReturnToMenu::Initialize()
 
 	// Setup
 	if (!ensure(ReturnToMenuButton != nullptr)) return false;
-	ReturnToMenuButton->OnClicked.AddDynamic(this, &UReturnToMenu::LoadMenu);
+	ReturnToMenuButton->OnClicked.AddDynamic(this, &UReturnToMenu::LoadMenuPressed);
 
 	if (!ensure(CancelButton != nullptr)) return false;
-	CancelButton->OnClicked.AddDynamic(this, &UReturnToMenu::Teardown);
+	CancelButton->OnClicked.AddDynamic(this, &UReturnToMenu::CancelPressed);
 
 	return true;
 }
 
-void UReturnToMenu::LoadMenu()
+void UReturnToMenu::CancelPressed()
 {
+	Teardown();
+}
 
+void UReturnToMenu::LoadMenuPressed()
+{
+	if (MenuInterface != nullptr)
+	{
+		Teardown();
+		MenuInterface->LoadMainMenu();
+	}
 }
 
 
