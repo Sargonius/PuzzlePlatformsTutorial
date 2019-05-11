@@ -29,6 +29,14 @@ void UMainMenu::AddServerToList(FString ServerName)
 	}
 }
 
+void UMainMenu::ClearServerList()
+{
+	if (ServerList)
+	{
+		ServerList->ClearChildren();
+	}
+}
+
 bool UMainMenu::Initialize()
 {
 	bool Success = Super::Initialize();
@@ -80,6 +88,11 @@ void UMainMenu::JoinServer()
 void UMainMenu::OpenJoinMenu()
 {
 	MenuSwitcher->SetActiveWidget(JoinMenu);
+	
+	if (MenuInterface != nullptr)
+	{
+		MenuInterface->RefreshServerList();
+	}
 }
 
 void UMainMenu::ReturnToMainMenu()

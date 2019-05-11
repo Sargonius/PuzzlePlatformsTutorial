@@ -21,6 +21,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddServerToList(FString ServerName);
 
+	UFUNCTION(BlueprintCallable)
+	void ClearServerList();
+
 	UPROPERTY(meta = (BindWidget))
 	class UButton* Host; 
 

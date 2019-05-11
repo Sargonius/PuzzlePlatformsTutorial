@@ -36,6 +36,9 @@ public:
 
 	virtual void LoadMainMenu() override;
 
+	UFUNCTION(Exec)
+	void RefreshServerList() override;
+
 
 private:
 	UPROPERTY()
