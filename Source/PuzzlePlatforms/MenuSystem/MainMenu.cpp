@@ -2,18 +2,25 @@
 
 #include "MainMenu.h"
 #include "ServerLineWidget.h"
+#include "ConstructorHelpers.h"
 #include "ScrollBox.h"
 #include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
 #include "Components/EditableTextBox.h"
 
+UMainMenu::UMainMenu()
+{
+	static ConstructorHelpers::FClassFinder<UUserWidget> ServerBPClass(TEXT("/Game/MenuSystem/WBP_ServerLine"));
+	if (!ensure(ServerBPClass.Class != nullptr)) return;
 
+	ServerLineBP = ServerBPClass.Class;
+}
 
 void UMainMenu::AddServerToList(FString ServerName)
 {
 	if (ServerLineBP)
 	{
-		UServerLineWidget* ServerLine = Cast<UServerLineWidget>(CreateWidget(this, ServerLineBP));
+		UServerLineWidget* ServerLine = CreateWidget<UServerLineWidget>(this, ServerLineBP);
 		if (ServerLine)
 		{
 			ServerLine->Setup(ServerName);

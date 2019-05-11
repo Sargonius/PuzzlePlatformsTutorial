@@ -16,15 +16,11 @@ class PUZZLEPLATFORMS_API UMainMenu : public UMenuWidget
 	
 public:
 
+	UMainMenu();
+
 	UFUNCTION(BlueprintCallable)
 	void AddServerToList(FString ServerName);
 
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	TSubclassOf<class UServerLineWidget> ServerLineBP;
-	
-
-
-	
 	UPROPERTY(meta = (BindWidget))
 	class UButton* Host; 
 
@@ -72,6 +68,9 @@ protected:
 
 	UFUNCTION()
 		void Quit();
+
+	UPROPERTY()
+	TSubclassOf<class UUserWidget> ServerLineBP;
 
 
 	
