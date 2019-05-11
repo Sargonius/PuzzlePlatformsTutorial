@@ -1,11 +1,26 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "MainMenu.h"
+#include "ServerLineWidget.h"
+#include "ScrollBox.h"
 #include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
 #include "Components/EditableTextBox.h"
 
 
+
+void UMainMenu::AddServerToList(FString ServerName)
+{
+	if (ServerLineBP)
+	{
+		UServerLineWidget* ServerLine = Cast<UServerLineWidget>(CreateWidget(this, ServerLineBP));
+		if (ServerLine)
+		{
+			ServerLine->Setup(ServerName);
+			ServerList->AddChild(ServerLine);
+		}
+	}
+}
 
 bool UMainMenu::Initialize()
 {
@@ -50,7 +65,7 @@ void UMainMenu::JoinServer()
 {
 	if (MenuInterface != nullptr)
 		{
-			FString Address = ServerIP->GetText().ToString();
+		FString Address = ""; //ServerIP->GetText().ToString();
 			MenuInterface->Join(Address);
 		}
 }

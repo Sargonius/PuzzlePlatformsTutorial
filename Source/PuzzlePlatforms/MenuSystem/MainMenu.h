@@ -15,6 +15,12 @@ class PUZZLEPLATFORMS_API UMainMenu : public UMenuWidget
 	GENERATED_BODY()
 	
 public:
+
+	UFUNCTION(BlueprintCallable)
+	void AddServerToList(FString ServerName);
+
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+	TSubclassOf<class UServerLineWidget> ServerLineBP;
 	
 
 
@@ -43,8 +49,11 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UWidget* JoinMenu;
 
+// 	UPROPERTY(meta = (BindWidget))
+// 	class UEditableTextBox* ServerIP; 
+
 	UPROPERTY(meta = (BindWidget))
-	class UEditableTextBox* ServerIP; 
+	class UScrollBox* ServerList;
 
 protected:
 	virtual bool Initialize();
