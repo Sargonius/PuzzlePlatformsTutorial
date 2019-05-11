@@ -29,7 +29,7 @@ public:
 	UPROPERTY(EditAnywhere, Meta = (MakeEditWidget = true))
 	FVector TargetLocation;
 
-	void AMovingPlatform::Swap(FVector* Current, FVector* Target);
+	//void AMovingPlatform::Swap(FVector* Current, FVector* Target);
 
 	void AddActiveTrigger();
 	void RemoveActiveTrigger();

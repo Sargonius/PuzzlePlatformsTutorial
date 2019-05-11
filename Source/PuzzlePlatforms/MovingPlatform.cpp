@@ -50,10 +50,10 @@ void AMovingPlatform::Tick(float DeltaTime)
 	}
 
 }
-
-void AMovingPlatform::Swap(FVector* Current, FVector* Target)
-{
-}
+// 
+// void AMovingPlatform::Swap(FVector* Current, FVector* Target)
+// {
+// }
 
 
 void AMovingPlatform::AddActiveTrigger()
