@@ -52,10 +52,13 @@ private:
 	// For delegates
 	void OnCreateSessionComplete(FName SessionName, bool Success);
 	void OnDestroySession(FName SessionName, bool Success);
+	void OnFindSessionComplete(bool Success);
 
 	void CreateSession();
 
 	IOnlineSessionPtr SessionInterface;
+
+	TSharedPtr<class FOnlineSessionSearch> SessionSearch;
 	
 	
 	
