@@ -23,8 +23,10 @@ void UMainMenu::AddServerToList(FString ServerName)
 		UServerLineWidget* ServerLine = CreateWidget<UServerLineWidget>(this, ServerLineBP);
 		if (ServerLine)
 		{
-			ServerLine->Setup(ServerName);
+			uint32 Index = ServerList->GetChildrenCount();
 			ServerList->AddChild(ServerLine);
+			ServerLine->Setup(ServerName, Index);
+			ServerLine->MainMenuReference = this;
 		}
 	}
 }
@@ -35,6 +37,11 @@ void UMainMenu::ClearServerList()
 	{
 		ServerList->ClearChildren();
 	}
+}
+
+void UMainMenu::SelectIndex(uint32 Index)
+{
+	SelectedIndex = Index;
 }
 
 bool UMainMenu::Initialize()
@@ -78,11 +85,15 @@ void UMainMenu::HostServer()
 
 void UMainMenu::JoinServer()
 {
-	if (MenuInterface != nullptr)
-		{
-		FString Address = ""; //ServerIP->GetText().ToString();
-			MenuInterface->Join(Address);
-		}
+	if (SelectedIndex.IsSet() && MenuInterface != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Selected index: %d"), SelectedIndex.GetValue());
+		MenuInterface->Join(SelectedIndex.GetValue());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Selected index not set"));
+	}
 }
 
 void UMainMenu::OpenJoinMenu()

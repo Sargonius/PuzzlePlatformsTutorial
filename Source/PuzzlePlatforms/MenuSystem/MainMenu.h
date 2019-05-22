@@ -24,6 +24,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ClearServerList();
 
+	void SelectIndex(uint32 Index);
+
 	UPROPERTY(meta = (BindWidget))
 	class UButton* Host; 
 
@@ -74,6 +76,8 @@ protected:
 
 	UPROPERTY()
 	TSubclassOf<class UUserWidget> ServerLineBP;
+
+	TOptional<uint32> SelectedIndex;
 
 
 	

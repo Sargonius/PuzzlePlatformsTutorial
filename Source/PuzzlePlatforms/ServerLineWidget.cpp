@@ -4,6 +4,7 @@
 #include "ServerLineWidget.h"
 #include "Button.h"
 #include "TextBlock.h"
+#include "MenuSystem\MainMenu.h"
 
 bool UServerLineWidget::Initialize()
 {
@@ -20,15 +21,19 @@ bool UServerLineWidget::Initialize()
 
 
 
-void UServerLineWidget::Setup(const FString ServerName)
+void UServerLineWidget::Setup(const FString ServerName, uint32 IndexToSet)
 {
 	if (!ensure(ServerText != nullptr)) return;
 
 	ServerText->SetText(FText::FromString(ServerName));
-
+	Index = IndexToSet;
 }
 
 void UServerLineWidget::JoinServer()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Trying to join server"));
+	if (MainMenuReference)
+	{
+		MainMenuReference->SelectIndex(Index);
+	}
 }

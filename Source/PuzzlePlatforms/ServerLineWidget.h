@@ -15,14 +15,18 @@ class PUZZLEPLATFORMS_API UServerLineWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UFUNCTION()
-	void Setup(const FString ServerName);
+
+	void Setup(const FString ServerName, uint32 Index);
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* ServerButton;
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* ServerText;
+
+	class UMainMenu* MainMenuReference;
+
+	uint32 Index;
 
 	virtual bool Initialize();
 
